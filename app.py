@@ -4,19 +4,18 @@ import sqlite3
 import plotly.express as px
 import numpy as np
 
-# Dodanie obsługi osadzania w iframe
 st.markdown(
-  “”"
-  <script>
-    document.addEventListener(“DOMContentLoaded”, function() {
-      let meta = document.createElement(‘meta’);
-      meta.httpEquiv = “Content-Security-Policy”;
-      meta.content = “frame-ancestors ‘self’ *“;
-      document.head.appendChild(meta);
-    });
-  </script>
-  “”",
-  unsafe_allow_html=True
+    """
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var meta = document.createElement("meta");
+        meta.setAttribute("http-equiv", "Content-Security-Policy");
+        meta.setAttribute("content", "frame-ancestors 'self' https://example.com");
+        document.head.appendChild(meta);
+      });
+    </script>
+    """,
+    unsafe_allow_html=True
 )
 
 
