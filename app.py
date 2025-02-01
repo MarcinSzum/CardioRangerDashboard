@@ -5,6 +5,7 @@ import plotly.express as px
 import numpy as np
 
 
+
 # Połączenie z bazą danych SQLite
 DB_PATH = 'db_heart_disease.db'
 conn = sqlite3.connect(DB_PATH)
@@ -18,7 +19,7 @@ df_historical = pd.read_sql_query(query_historical, conn)
 # Zamknięcie połączenia z bazą danych
 conn.close()
 
-# Zamień 'NA' na NaN
+# Zamiana 'NA' na NaN
 pd.set_option('future.no_silent_downcasting', True)
 df.replace('NA', np.nan, inplace=True)
 columns_to_fill = ['currentSmoker', 'cigsPerDay', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes']
@@ -28,18 +29,14 @@ df['TenYearCHD'] = df['TenYearCHD'].astype(str)
 df['currentSmoker'] = df['currentSmoker'].astype(str)
 df = df.dropna()
 
-# Możesz zrobić to dla wszystkich kolumn numerycznych
+# konwersja kolumn na typ numeryczny
 num_cols = ["cigsPerDay", "totChol", "sysBP", "diaBP", "BMI", "heartRate", "glucose","BPMeds","education","diabetes"]
 df[num_cols] = df[num_cols].apply(pd.to_numeric, errors='coerce')
 
 
-
-
-
-
 # Tytuł aplikacji
 st.markdown(
-    "<h1 style='color: purple;'>Aplikacja Random Forest Rangers</h1>",
+    "<h1 style='color: purple;'>CardioRanger – Interaktywny Dashboard</h1>",
     unsafe_allow_html=True
 )
 
@@ -51,12 +48,21 @@ tab1, tab2, tab3, tab4 = st.tabs(["Główna", "Dane", "Dashboard", "Kontakt"])
 
 # Zakładka 1: Główna
 with tab1:
-    st.header("Witaj w aplikacji!")
-    st.write("To jest aplikacja zespołu Random Forest Rangers.")
+    st.write(" ")
+    st.write(" ")
+    st.markdown("<h1 style='text-align: center; font-size: 24px;'>Witaj w CardioRanger Dashboard – Twoim przewodniku po zdrowiu serca!</h1>", unsafe_allow_html=True)
+    st.write(" ")
+    st.write("Nasza aplikacja opiera się na danych z **Framingham Heart Study** i umożliwia interaktywne analizowanie czynników wpływających na zdrowie serca. **CardioRanger** to dashboard stworzony w **Streamlit**, który wizualizuje kluczowe wskaźniki zdrowotne i pozwala na eksplorację danych zapisanych w bazie **SQLite**.")
+    st.write(" ")
+    st.write("Dodatkowo, nasz zespół **Random Forest Rangers** stworzył uzupełniającą aplikację opartą na **modelu regresji logistycznej**, która przewiduje ryzyko choroby wieńcowej serca **(CHD)**")
+    st.write(" ")
+    st.write("Przeglądaj dane, odkrywaj zależności i sprawdź, jakie czynniki mogą wpływać na zdrowie Twojego ♥️ !")
+
+
 
 # Zakładka 2: Dane
 with tab2:
-    st.header("Dane z bazy danych SQLite")
+    st.header("Dane z bazy danych SQLite 💾")
     st.write("Poniżej znajduje się tabela z aktualnymi danymi z bazy danych:")
     st.dataframe(df)
     st.write(" ")
@@ -89,7 +95,7 @@ with tab2:
 
 # Zakładka 3: Dashboard
 with tab3:
-    st.header("Dashboard")
+    st.header("Dashboard 📊")
 
     # Filtry
     st.sidebar.header("Filtry")
@@ -447,12 +453,14 @@ with tab3:
 with tab4:
     
     st.header("Kontakt")
-    st.write("Skontaktuj się z nami!")
-    st.write("**Piotr Miernik,  Slawomir Grzybek**")
-    st.write("**Marcin Roszak,  Marcin Szumniak**")
     st.write(" ")
-    st.write("**Email:** randomforestrangers@example.com")
-    st.write("**Telefon:** +48 123 456 789")
-    st.write("**Adres:** ul. Data Science 123, 00-001 Warszawa")
+    st.write("Skontaktuj się z nami!")
+    st.write("**📧 Marcin Szumniak:** bemyexcel@gmail.com")
+    st.write("**📧 Marcin Roszak:** marcinr9623@gmail.com")
+    st.write("**📧 iotr Miernik:** miernik.piotr@gmail.com")
+    st.write("**📧 Slawomir Grzybek:** grzebyk.slawomir@gmail.com")
+    st.write(" ")
+    st.write("**📱 Telefon:** +48 123 456 789")
+    st.write("**📍Adres:** ul. Data Science 123, 00-001 Warszawa")
     st.image("logo.png", caption="Zespół Random Forest Rangers", width=300)
    
