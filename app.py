@@ -10,7 +10,7 @@ st.markdown(
       document.addEventListener("DOMContentLoaded", function() {
         var meta = document.createElement("meta");
         meta.setAttribute("http-equiv", "Content-Security-Policy");
-        meta.setAttribute("content", "frame-ancestors 'self' https://example.com");
+        meta.setAttribute("content", "frame-ancestors *");
         document.head.appendChild(meta);
       });
     </script>
