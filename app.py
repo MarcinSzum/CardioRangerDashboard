@@ -4,6 +4,21 @@ import sqlite3
 import plotly.express as px
 import numpy as np
 
+# Dodanie obsługi osadzania w iframe
+st.markdown(
+  “”"
+  <script>
+    document.addEventListener(“DOMContentLoaded”, function() {
+      let meta = document.createElement(‘meta’);
+      meta.httpEquiv = “Content-Security-Policy”;
+      meta.content = “frame-ancestors ‘self’ *“;
+      document.head.appendChild(meta);
+    });
+  </script>
+  “”",
+  unsafe_allow_html=True
+)
+
 
 # Połączenie z bazą danych SQLite
 DB_PATH = 'db_heart_disease.db'
